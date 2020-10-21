@@ -12,6 +12,16 @@ public class TestData {
   Long id;
   String value;
 
+  public TestData() {
+    this.id = null;
+    this.value = null;
+  }
+
+  public TestData(Long id, String value) {
+    this.id = id;
+    this.value = value;
+  }
+
   public Long getId() {
     return id;
   }
