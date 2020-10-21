@@ -10,7 +10,7 @@ import no.itera.test.repository.DataKotlinRepository
 import no.itera.test.service.DataKotlinService
 import java.util.*
 
-class DataKotlinServiceMockkFunSpec : FunSpec({
+class DataKotlinServiceMockkFunSpecTest : FunSpec({
     val repository = mockk<DataKotlinRepository>()
 
     afterTest {

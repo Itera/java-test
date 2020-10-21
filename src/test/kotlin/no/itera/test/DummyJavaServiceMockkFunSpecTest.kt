@@ -9,7 +9,7 @@ import io.mockk.verify
 import no.itera.test.repository.DummyRepository
 import no.itera.test.service.DummyJavaService
 
-class DummyJavaServiceMockkFunSpec : FunSpec({
+class DummyJavaServiceMockkFunSpecTest : FunSpec({
     val repository = mockk<DummyRepository>()
 
     afterTest {

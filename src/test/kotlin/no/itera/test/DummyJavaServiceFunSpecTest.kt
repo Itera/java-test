@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 import no.itera.test.repository.DummyRepositoryImpl
 import no.itera.test.service.DummyJavaService
 
-class DummyJavaServiceFunSpec : FunSpec() {
+class DummyJavaServiceFunSpecTest : FunSpec() {
     private lateinit var service: DummyJavaService
 
     override fun beforeTest(testCase: TestCase) {
