@@ -5,11 +5,11 @@ import no.itera.test.repository.DummyRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JavaService {
+public class DummyJavaService {
 
   private final DummyRepository repository;
 
-  public JavaService(DummyRepository repository) {
+  public DummyJavaService(DummyRepository repository) {
     this.repository = repository;
   }
 

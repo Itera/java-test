@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class StatusTest {
+class DummyJavaServiceStatusIT {
 	@Autowired
 	private MockMvc mvc;
 

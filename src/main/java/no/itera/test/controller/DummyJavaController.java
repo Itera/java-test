@@ -1,16 +1,16 @@
 package no.itera.test.controller;
 
-import no.itera.test.service.JavaService;
+import no.itera.test.service.DummyJavaService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/java")
-public class JavaController {
-  private final JavaService service;
+public class DummyJavaController {
+  private final DummyJavaService service;
 
-  public JavaController(JavaService service) {
+  public DummyJavaController(DummyJavaService service) {
     this.service = service;
   }
 

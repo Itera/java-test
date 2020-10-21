@@ -2,11 +2,11 @@ package no.itera.test.repository
 
 import org.springframework.stereotype.Component
 
-interface KotlinRepository {
+interface DummyKotlinRepository {
     fun isUp(): Boolean
 }
 
 @Component
-class DummyKotlinRepository : KotlinRepository {
+class DummyKotlinRepositoryImpl : DummyKotlinRepository {
     override fun isUp() = true
 }

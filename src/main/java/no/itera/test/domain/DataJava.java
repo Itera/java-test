@@ -6,18 +6,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class TestData {
+public class DataJava {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
   String value;
 
-  public TestData() {
+  public DataJava() {
     this.id = null;
     this.value = null;
   }
 
-  public TestData(Long id, String value) {
+  public DataJava(Long id, String value) {
     this.id = id;
     this.value = value;
   }

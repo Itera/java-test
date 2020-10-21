@@ -7,9 +7,9 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import no.itera.test.repository.DummyRepository
-import no.itera.test.service.JavaService
+import no.itera.test.service.DummyJavaService
 
-class JavaServiceMockkTest : FunSpec({
+class DummyJavaServiceMockkFunSpec : FunSpec({
     val repository = mockk<DummyRepository>()
 
     afterTest {
@@ -19,7 +19,7 @@ class JavaServiceMockkTest : FunSpec({
     test("status check") {
         every { repository.isUp } returns true
 
-        val service = JavaService(repository)
+        val service = DummyJavaService(repository)
 
         service.backendCheck() shouldBe true
 
@@ -29,7 +29,7 @@ class JavaServiceMockkTest : FunSpec({
     test("status check fails") {
         every { repository.isUp } returns false
 
-        val service = JavaService(repository)
+        val service = DummyJavaService(repository)
 
         service.backendCheck() shouldBe false
 

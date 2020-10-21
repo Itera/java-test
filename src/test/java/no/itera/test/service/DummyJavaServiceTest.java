@@ -1,14 +1,14 @@
 package no.itera.test.service;
 
-import no.itera.test.repository.FakeRepository;
+import no.itera.test.repository.DummyRepositoryImpl;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class JavaServiceTest {
+class DummyJavaServiceTest {
   @Test
   void testCalculation() {
-    JavaService service = new JavaService(new FakeRepository());
+    DummyJavaService service = new DummyJavaService(new DummyRepositoryImpl());
 
     Assertions.assertEquals(5, service.complexCalculation(2, 3));
   }

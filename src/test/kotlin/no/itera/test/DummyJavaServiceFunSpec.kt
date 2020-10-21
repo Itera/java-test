@@ -3,15 +3,15 @@ package no.itera.test
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.core.test.TestCase
 import io.kotest.matchers.shouldBe
-import no.itera.test.repository.FakeRepository
-import no.itera.test.service.JavaService
+import no.itera.test.repository.DummyRepositoryImpl
+import no.itera.test.service.DummyJavaService
 
-class JavaServiceKotlinTest : FunSpec() {
-    private lateinit var service: JavaService
+class DummyJavaServiceFunSpec : FunSpec() {
+    private lateinit var service: DummyJavaService
 
     override fun beforeTest(testCase: TestCase) {
         super.beforeTest(testCase)
-        service = JavaService(FakeRepository())
+        service = DummyJavaService(DummyRepositoryImpl())
     }
 
     init {

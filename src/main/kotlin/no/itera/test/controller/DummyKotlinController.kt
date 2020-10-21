@@ -1,12 +1,12 @@
 package no.itera.test.controller
 
-import no.itera.test.service.KotlinService
+import no.itera.test.service.DummyKotlinService
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/kotlin")
-class KotlinController(val service: KotlinService) {
+class DummyKotlinController(val service: DummyKotlinService) {
 
     @RequestMapping("/")
     fun healthCheck() = if (service.backendCheck()) {

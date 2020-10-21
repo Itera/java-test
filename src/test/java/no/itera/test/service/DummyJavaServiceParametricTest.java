@@ -2,17 +2,16 @@ package no.itera.test.service;
 
 import java.util.stream.Stream;
 
-import no.itera.test.repository.FakeRepository;
+import no.itera.test.repository.DummyRepositoryImpl;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class JavaServiceParametricTest {
-  private JavaService service;
+public class DummyJavaServiceParametricTest {
+  private DummyJavaService service;
 
   @ParameterizedTest
   @MethodSource("valuesForTest")
@@ -31,6 +30,6 @@ public class JavaServiceParametricTest {
 
   @BeforeEach
   void setup() {
-    this.service = new JavaService(new FakeRepository());
+    this.service = new DummyJavaService(new DummyRepositoryImpl());
   }
 }

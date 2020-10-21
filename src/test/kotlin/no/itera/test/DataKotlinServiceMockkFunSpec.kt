@@ -5,15 +5,13 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.*
 import no.itera.test.domain.DataNotFoundException
-import no.itera.test.domain.TestKotlinData
-import no.itera.test.repository.DummyRepository
-import no.itera.test.repository.TestKotlinDataRepository
-import no.itera.test.service.JavaService
-import no.itera.test.service.TestKotlinDataService
+import no.itera.test.domain.DataKotlin
+import no.itera.test.repository.DataKotlinRepository
+import no.itera.test.service.DataKotlinService
 import java.util.*
 
-class TestKotlinDataServiceMockTest : FunSpec({
-    val repository = mockk<TestKotlinDataRepository>()
+class DataKotlinServiceMockkFunSpec : FunSpec({
+    val repository = mockk<DataKotlinRepository>()
 
     afterTest {
         clearMocks(repository)
@@ -22,9 +20,9 @@ class TestKotlinDataServiceMockTest : FunSpec({
     test("get all") {
         every { repository.findAll() } returns listOf()
 
-        val service = TestKotlinDataService(repository)
+        val service = DataKotlinService(repository)
 
-        service.getAll() shouldBe listOf<TestKotlinData>()
+        service.getAll() shouldBe listOf<DataKotlin>()
 
         verify(exactly = 1) { repository.findAll() }
     }
@@ -32,11 +30,11 @@ class TestKotlinDataServiceMockTest : FunSpec({
     test("get single") {
         val slot = slot<Long>()
 
-        every { repository.findById(capture(slot)) } returns Optional.of(TestKotlinData(1, ""))
+        every { repository.findById(capture(slot)) } returns Optional.of(DataKotlin(1, ""))
 
-        val service = TestKotlinDataService(repository)
+        val service = DataKotlinService(repository)
 
-        service.getById(1) shouldBe TestKotlinData(1, "")
+        service.getData(1) shouldBe DataKotlin(1, "")
 
         verify(exactly = 1) { repository.findById(any()) }
 
@@ -47,10 +45,10 @@ class TestKotlinDataServiceMockTest : FunSpec({
     test("get single no hit") {
         every { repository.findById(any()) } returns Optional.empty()
 
-        val service = TestKotlinDataService(repository)
+        val service = DataKotlinService(repository)
 
         shouldThrow<DataNotFoundException> {
-            service.getById(1)
+            service.getData(1)
         }
 
         verify(exactly = 1) { repository.findById(any()) }
