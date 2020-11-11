@@ -45,7 +45,7 @@ Way too many to cover in one workshop - we will take a look at the following:
 ## Design for testing
 
 * Follow SOLID - well designed code is usually easier to test
-* Injection - prefer constructor to setters or Injected properties
+* Injection - prefer constructor to setters or injected properties
 * Use of `@VisibleForTesting` [^1]
 
 [^1]: VisibleForTesting simply documents why access to a method or value is more open than it should be. It does nothing for enforcement - but can be used by static code analysis.
@@ -167,6 +167,53 @@ void testServiceBackendCheck() {
     Assertions.assertThat(service.backendCheck()).isTrue();
 }
 ```
+
+---
+
+## Simple spying example - argument capture
+
+We want to know something about an internal call that our test candidate makes.
+
+For that we'll use argument capture.
+
+Example: DataJavaServiceMockTest
+
+As well as using a mocked repository we add a Captor:
+
+```java
+@Captor
+ArgumentCaptor<Long> captor;
+```
+
+---
+
+We can use this when configuring the mock to capture an argument value:
+
+```java
+when(repository.findById(captor.capture()))
+  .thenReturn(Optional.of(new DataJava(1L, "qwerty")));
+```
+
+And we can test that this was in fact called with the correct value:
+
+```java
+Assertions.assertThat(captor.getValue()).isEqualTo(1L);
+```
+
+---
+
+## Verification
+
+We can also check that certain expectations match - how many times a mocked method is called, order of calls etc.
+
+For the previous example - we can verify that the findById method is called only once:
+
+```java
+verify(repository, times(1)).findById(any());
+```
+
+Here we use `any()` as matcher - we could also choose to verify with a concrete parameter value.
+
 
 
 ---

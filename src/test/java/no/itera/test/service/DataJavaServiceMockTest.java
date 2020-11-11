@@ -1,6 +1,8 @@
 package no.itera.test.service;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Collections;
@@ -45,6 +47,8 @@ class DataJavaServiceMockTest {
     Assertions.assertThat(data).isPresent();
     Assertions.assertThat(data.get().getId()).isEqualTo(1);
     Assertions.assertThat(data.get().getValue()).isEqualTo("qwerty");
+    Assertions.assertThat(captor.getValue()).isEqualTo(1L);
+    verify(repository, times(1)).findById(any());
   }
 
   @Test
