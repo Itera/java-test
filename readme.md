@@ -69,3 +69,16 @@ There are multiple ways to assert in tests. JUnit has its inbuilt set. Some othe
 Which to use us a matter of personal preference and/or project standards.
 
 
+---
+
+## Parametric
+
+A parametric test allows us to reuse the same test with a range of different test data sets.
+
+The test method is annotated to tell JUnit that it is parameterized and also where to get the data from.
+
+There's a bunch of different sources available[^1] - we'll use MethodSource.
+
+Example in SimpleParametricTest
+
+[^1]: https://junit.org/junit5/docs/current/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/package-summary.html
