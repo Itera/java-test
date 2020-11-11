@@ -214,13 +214,58 @@ verify(repository, times(1)).findById(any());
 
 Here we use `any()` as matcher - we could also choose to verify with a concrete parameter value.
 
+---
 
+## Integration tests
+
+These are tests that spin up the application and test it under a running condition.
+
+We use the failsafe plugin for maven for these.
+
+One of the default filename matchers for failsafe is **IT.java - we we will use that.
+
+---
+
+## Integration with spring
+
+For integration tests with spring we can use:
+
+```java
+@ExtendWith(SpringExtension.class)
+```
+
+This annotation also allows us to specify what spring configuration we want to use.
+
+We will actually use this for the DB tests later on - but as we are using spring boot - we can use the spring boot annotation that applies this extension as well as bootstrapping spring boot for us:
+
+```java
+@SpringBootTest
+```
+
+Example: DummyJavaServiceIT
+
+---
+
+## Spring boot with MockMvc
+
+Spring boot test provides us with a mock mvc engine to test web calls to controllers.
+
+Annotate the test class:
+
+```java
+@SpringBootTest
+@AutoConfigureMockMvc
+```
+
+and you get a MockMvc object you can use to call your application.
+
+
+Example: DummyJavaControllerIT
 
 ---
 
 Expected structure for this doc:
 
-* Integration test in a spring app (with mock/spy)
 * DB Tests
 * Kotlin
 
