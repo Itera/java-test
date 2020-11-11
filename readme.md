@@ -82,3 +82,20 @@ There's a bunch of different sources available[^1] - we'll use MethodSource.
 Example in SimpleParametricTest
 
 [^1]: https://junit.org/junit5/docs/current/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/package-summary.html
+
+---
+
+## Maven testing
+
+There are three main sets of configuration in the pom.xml file.
+
+* Surefire plugin - runs unit tests
+* Failsafe plugin - runs integration tests
+* Jacoco - generates code coverage
+
+Surefire will run under mvn test, and failsafe under mvn verify [^2]
+
+Jacoco sets itself up under pre-integration-test and builds the result in post-integration-test so will also be triggered by verify.
+
+[^2]: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
+
