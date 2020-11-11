@@ -58,5 +58,6 @@ class DataJavaServiceMockTest {
     DataJavaService service = new DataJavaService(repository);
 
     Assertions.assertThat(service.getData(1)).isEmpty();
+    verify(repository, times(1)).findById(any());
   }
 }
