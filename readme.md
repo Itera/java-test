@@ -264,8 +264,72 @@ Example: DummyJavaControllerIT
 
 ---
 
-Expected structure for this doc:
+## DB testing
 
-* DB Tests
-* Kotlin
+For this we will use h2 in memory db and flyway for db migrations.
 
+The migrations are under src/main/resources rather than src/test/resources so that we can click around in the online db interface. However - you can use src/test/resources for test only data.
+
+---
+
+## DB Console
+
+Start the TestApplication then head to http://localhost:8080/h2
+
+JDBC URL: jdbc:h2:mem:testdb
+Username: sa
+Password: empty
+
+---
+
+## DB Repository test
+
+We will use two annotations for this:
+
+```java
+@ExtendWith(SpringExtension.class)
+@DataJpaTest
+```
+
+Inject the repository you want to test:
+
+```java
+@Autowired
+private DataJavaRepository repository;
+```
+
+Example: DataJavaRepositoryIT
+
+---
+
+## Kotlin
+
+Kotlin can be used to create all the tests we have seen so far - e.g. compare:
+
+* DataJavaRepositoryIT
+* DataKotlinRepositoryIT
+
+The same annotations and injection of repository is used. The only difference here is that we used kotest matchers rather than JUnit assertions.
+
+---
+
+## Kotest Specs
+
+Kotest also has multiple styles (specs) to choose between.
+
+For the list (10 as of when this was written) see [styles.md](https://github.com/kotest/kotest/blob/master/doc/styles.md)
+
+Let's use FunSpec as an example: DummyJavaServiceFunSpecTest
+
+This is not quite the simplest structure - it uses init rather than the FunSpec constructor - but that allows for the beforeTest setup call.
+
+---
+
+## Kotest with Mockk
+
+Kotlin can also use Mockito and similar java mock libraries - but there is a nice kotlin one called mockk.
+
+Two examples - one mock tests the DummyJavaService and the other the DataKotlinService:
+
+* DummyJavaServiceMockkFunSpecTest
+* DataKotlinServiceMockkFunSpecTest
