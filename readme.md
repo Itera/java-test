@@ -417,3 +417,12 @@ Jacoco sets itself up under pre-integration-test and builds the result in post-i
 
 [^7]: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
 
+---
+
+## CI testing
+
+There are multiple JVM supporting continuous integration systems available - bamboo, jenkins etc - but since this repo is on github - it's set up with a github action.
+
+Example: .github/workflows/build.yml
+
+In a devops environment we prefer CIs that support configuration as code (github action workflows, Jenkinsfile etc) where the build config is under change control - rather than set up in the CI interface manually.
