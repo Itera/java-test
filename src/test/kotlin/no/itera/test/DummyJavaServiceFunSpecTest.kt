@@ -9,7 +9,7 @@ import no.itera.test.service.DummyJavaService
 class DummyJavaServiceFunSpecTest : FunSpec() {
     private lateinit var service: DummyJavaService
 
-    override fun beforeTest(testCase: TestCase) {
+    override suspend fun beforeTest(testCase: TestCase) {
         super.beforeTest(testCase)
         service = DummyJavaService(DummyRepositoryImpl())
     }
