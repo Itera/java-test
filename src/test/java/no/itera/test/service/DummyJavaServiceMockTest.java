@@ -12,24 +12,24 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class DummyJavaServiceMockTest {
-  @Mock
-  DummyRepository dummyRepository;
+    @Mock
+    DummyRepository dummyRepository;
 
-  @Test
-  void testServiceBackendCheck() {
-    when(dummyRepository.isUp()).thenReturn(true);
+    @Test
+    void testServiceBackendCheck() {
+        when(dummyRepository.isUp()).thenReturn(true);
 
-    DummyJavaService service = new DummyJavaService(dummyRepository);
+        DummyJavaService service = new DummyJavaService(dummyRepository);
 
-    Assertions.assertThat(service.backendCheck()).isTrue();
-  }
+        Assertions.assertThat(service.backendCheck()).isTrue();
+    }
 
-  @Test
-  void testServiceBackendCheckFail() {
-    when(dummyRepository.isUp()).thenReturn(false);
+    @Test
+    void testServiceBackendCheckFail() {
+        when(dummyRepository.isUp()).thenReturn(false);
 
-    DummyJavaService service = new DummyJavaService(dummyRepository);
+        DummyJavaService service = new DummyJavaService(dummyRepository);
 
-    Assertions.assertThat(service.backendCheck()).isFalse();
-  }
+        Assertions.assertThat(service.backendCheck()).isFalse();
+    }
 }

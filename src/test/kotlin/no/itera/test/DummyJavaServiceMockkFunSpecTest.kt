@@ -35,5 +35,4 @@ class DummyJavaServiceMockkFunSpecTest : FunSpec({
 
         verify(exactly = 1) { repository.isUp }
     }
-
 })

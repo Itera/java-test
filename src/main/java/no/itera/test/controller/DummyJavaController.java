@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/java")
 public class DummyJavaController {
-  private final DummyJavaService service;
+    private final DummyJavaService service;
 
-  public DummyJavaController(DummyJavaService service) {
-    this.service = service;
-  }
-
-  @RequestMapping("/")
-  public String healthCheck() {
-    if (service.backendCheck()) {
-      return "OK";
-    } else {
-      return "Not OK";
+    public DummyJavaController(DummyJavaService service) {
+        this.service = service;
     }
-  }
+
+    @RequestMapping("/")
+    public String healthCheck() {
+        if (service.backendCheck()) {
+            return "OK";
+        } else {
+            return "Not OK";
+        }
+    }
 }

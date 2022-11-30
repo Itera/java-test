@@ -21,5 +21,3 @@ class DataKotlinRepositoryIT {
         items.size shouldBe 5
     }
 }
-
-

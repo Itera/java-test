@@ -7,9 +7,9 @@ import javax.persistence.Id
 
 @Entity
 data class DataKotlin(
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long,
 
-        val name: String
+    val name: String
 )

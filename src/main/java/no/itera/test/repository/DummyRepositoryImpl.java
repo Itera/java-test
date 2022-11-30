@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DummyRepositoryImpl implements DummyRepository {
-  @Override
-  public boolean isUp() {
-    return true;
-  }
+    @Override
+    public boolean isUp() {
+        return true;
+    }
 }

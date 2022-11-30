@@ -15,14 +15,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @SpringBootTest
 @AutoConfigureMockMvc
 class DummyJavaControllerIT {
-	@Autowired
-	private MockMvc mvc;
+    @Autowired
+    private MockMvc mvc;
 
-	@Test
-	void testStatus() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/java/").accept(MediaType.TEXT_PLAIN))
-				.andExpect(status().isOk())
-				.andExpect(content().string(equalTo("OK")));
-	}
+    @Test
+    void testStatus() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/java/").accept(MediaType.TEXT_PLAIN))
+                .andExpect(status().isOk()).andExpect(content().string(equalTo("OK")));
+    }
 
 }

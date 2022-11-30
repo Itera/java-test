@@ -14,13 +14,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 class DataJavaRepositoryIT {
-  @Autowired
-  private DataJavaRepository repository;
+    @Autowired
+    private DataJavaRepository repository;
 
-  @Test
-  void dataWasLoaded() {
-    List<DataJava> items = repository.findAll();
+    @Test
+    void dataWasLoaded() {
+        List<DataJava> items = repository.findAll();
 
-    Assertions.assertEquals(5, items.size());
-  }
+        Assertions.assertEquals(5, items.size());
+    }
 }

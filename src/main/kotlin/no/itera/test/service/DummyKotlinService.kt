@@ -6,5 +6,4 @@ import org.springframework.stereotype.Service
 @Service
 class DummyKotlinService(val repository: DummyKotlinRepository) {
     fun backendCheck() = repository.isUp()
-
 }

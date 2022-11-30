@@ -3,9 +3,13 @@ package no.itera.test
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import io.mockk.*
-import no.itera.test.domain.DataNotFoundException
+import io.mockk.clearMocks
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.slot
+import io.mockk.verify
 import no.itera.test.domain.DataKotlin
+import no.itera.test.domain.DataNotFoundException
 import no.itera.test.repository.DataKotlinRepository
 import no.itera.test.service.DataKotlinService
 import java.util.*
@@ -40,7 +44,6 @@ class DataKotlinServiceMockkFunSpecTest : FunSpec({
 
         slot.captured shouldBe 1
     }
-
 
     test("get single no hit") {
         every { repository.findById(any()) } returns Optional.empty()

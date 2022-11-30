@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class DummyJavaServiceTest {
-  @Test
-  void testCalculation() {
-    DummyJavaService service = new DummyJavaService(new DummyRepositoryImpl());
+    @Test
+    void testCalculation() {
+        DummyJavaService service = new DummyJavaService(new DummyRepositoryImpl());
 
-    Assertions.assertEquals(5, service.complexCalculation(2, 3));
-  }
+        Assertions.assertEquals(5, service.complexCalculation(2, 3));
+    }
 }

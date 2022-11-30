@@ -8,13 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class DummyJavaServiceIT {
-  @Autowired
-  private DummyJavaService service;
+    @Autowired
+    private DummyJavaService service;
 
-  @Test
-  void testStatus() throws Exception {
-    boolean result = service.backendCheck();
+    @Test
+    void testStatus() throws Exception {
+        boolean result = service.backendCheck();
 
-    assertEquals(result, true);
-  }
+        assertEquals(result, true);
+    }
 }

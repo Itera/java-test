@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class ExceptionAdvice {
-  @ResponseBody
-  @ExceptionHandler(DataNotFoundException.class)
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  String notFoundHandler(DataNotFoundException ex) {
-    return "Data not found";
-  }
+    @ResponseBody
+    @ExceptionHandler(DataNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String notFoundHandler(DataNotFoundException ex) {
+        return "Data not found";
+    }
 }

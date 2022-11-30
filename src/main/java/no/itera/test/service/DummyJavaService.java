@@ -7,17 +7,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class DummyJavaService {
 
-  private final DummyRepository repository;
+    private final DummyRepository repository;
 
-  public DummyJavaService(DummyRepository repository) {
-    this.repository = repository;
-  }
+    public DummyJavaService(DummyRepository repository) {
+        this.repository = repository;
+    }
 
-  public boolean backendCheck() {
-    return repository.isUp();
-  }
+    public boolean backendCheck() {
+        return repository.isUp();
+    }
 
-  public int complexCalculation(int a, int b) {
-    return a + b;
-  }
+    public int complexCalculation(int a, int b) {
+        return a + b;
+    }
 }

@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DataJavaService {
-  private final DataJavaRepository repository;
+    private final DataJavaRepository repository;
 
-  public DataJavaService(DataJavaRepository repository) {
-    this.repository = repository;
-  }
+    public DataJavaService(DataJavaRepository repository) {
+        this.repository = repository;
+    }
 
-  public List<DataJava> allData() {
-    return repository.findAll();
-  }
+    public List<DataJava> allData() {
+        return repository.findAll();
+    }
 
-  public Optional<DataJava> getData(long id) {
-    return repository.findById(id);
-  }
+    public Optional<DataJava> getData(long id) {
+        return repository.findById(id);
+    }
 }
