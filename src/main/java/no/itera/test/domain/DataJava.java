@@ -10,23 +10,23 @@ public class DataJava {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
-  String value;
+  String name;
 
   public DataJava() {
     this.id = null;
-    this.value = null;
+    this.name = null;
   }
 
-  public DataJava(Long id, String value) {
+  public DataJava(Long id, String name) {
     this.id = id;
-    this.value = value;
+    this.name = name;
   }
 
   public Long getId() {
     return id;
   }
 
-  public String getValue() {
-    return value;
+  public String getName() {
+    return name;
   }
 }

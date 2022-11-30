@@ -11,5 +11,5 @@ data class DataKotlin(
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long,
 
-        val value: String
+        val name: String
 )

@@ -46,7 +46,7 @@ class DataJavaServiceMockTest {
 
     Assertions.assertThat(data).isPresent();
     Assertions.assertThat(data.get().getId()).isEqualTo(1);
-    Assertions.assertThat(data.get().getValue()).isEqualTo("qwerty");
+    Assertions.assertThat(data.get().getName()).isEqualTo("qwerty");
     Assertions.assertThat(captor.getValue()).isEqualTo(1L);
     verify(repository, times(1)).findById(any());
   }

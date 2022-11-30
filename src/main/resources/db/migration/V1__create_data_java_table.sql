@@ -1,4 +1,4 @@
 CREATE TABLE data_java (
     id INT AUTO_INCREMENT,
-    value VARCHAR(255)
+    name VARCHAR(255)
 );
