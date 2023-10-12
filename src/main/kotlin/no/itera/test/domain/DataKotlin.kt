@@ -1,9 +1,9 @@
 package no.itera.test.domain
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
 
 @Entity
 data class DataKotlin(
@@ -11,5 +11,5 @@ data class DataKotlin(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
-    val name: String
+    val name: String,
 )

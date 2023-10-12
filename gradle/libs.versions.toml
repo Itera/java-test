@@ -1,0 +1,35 @@
+[versions]
+detekt_version = "1.23.1"
+kotest_version = "5.7.2"
+kotlin_version = "1.9.10"
+kotlin_allopen_version = "1.9.10"
+kotlin_jpa_version = "1.9.10"
+kotlinter_version = "3.14.0"
+kotlinx_version = "1.7.3"
+mockk_version = "1.13.8"
+spring_boot_version = "3.1.4"
+spring_refs_version = "1.1.3"
+
+[libraries]
+spring_boot_starter = { group = "org.springframework.boot", name = "spring-boot-starter" }
+spring_boot_starter_data_jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+spring_boot_starter_test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+spring_boot_starter_web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+
+h2 = { group = "com.h2database", name = "h2" }
+flyway = { group = "org.flywaydb", name = "flyway-core" }
+
+kotlinx = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core-jvm", version.ref = "kotlinx_version"}
+
+kotest_assertions_core = { group = "io.kotest", name = "kotest-assertions-core-jvm", version.ref = "kotest_version" }
+kotest_runner = { group = "io.kotest", name = "kotest-runner-junit5-jvm", version.ref = "kotest_version" }
+mockk = { group = "io.mockk", name = "mockk-jvm", version.ref = "mockk_version" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin_version" }
+kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter_version" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt_version" }
+spring_boot = { id = "org.springframework.boot", version.ref = "spring_boot_version" }
+spring_deps = { id = "io.spring.dependency-management", version.ref = "spring_refs_version" }
+kotlin_allopen = { id = "org.jetbrains.kotlin.plugin.allopen",  version.ref = "kotlin_allopen_version" }
+kotlin_jpa = { id = "org.jetbrains.kotlin.plugin.jpa",  version.ref = "kotlin_jpa_version" }
