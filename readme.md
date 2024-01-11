@@ -2,7 +2,7 @@ theme: Itera
 slide-transition: true
 autoscale: true
 
-# Java Test
+# Java/JVM Testing
 
 ![inline](logo.svg)
 
@@ -48,7 +48,7 @@ Way too many to cover in one workshop - we will take a look at the following:
 
 ## Design for testing
 
-* Follow SOLID - well designed code is usually easier to test
+* Follow SOLID - well-designed code is usually easier to test
 * Injection - prefer constructor to setters or injected properties
 * Unit tests give more value where they test logic rather than boilerplate
 * Structure of a test
@@ -67,7 +67,9 @@ Classes often have dependencies. These can be provided in several ways - e.g.:
 * Setter methods
 * Annotated properties
 
-By using constructor properties - it forces you to create a complete instance - this is good practice both for coding in general as well as testing - for example - the instance property can be set final.
+By using constructor properties - it forces you to create a complete instance - this is good practice both for coding in general and testing - for example - the instance property can be set final.
+
+Setter methods may or may not have been called - so you may have an incomplete object.
 
 Annotation based properties are even worse - how do you set them from the test code without starting the annotation system (for example spring).
 
@@ -75,27 +77,27 @@ Annotation based properties are even worse - how do you set them from the test c
 
 ```java
 class ConstructorInjected {
-  // The internal property can be final
-  private final Service service;
+    // The internal property can be final
+    private final Service service;
 
-  // In spring 4.3 - classes with a single constructor no longer need the @Autowired annotation
-  public ConstructorInjected(Service service) {
-    this.service = service;
-  }
+    // In spring 4.3 - classes with a single constructor no longer need the @Autowired annotation
+    public ConstructorInjected(Service service) {
+        this.service = service;
+    }
 }
 
 class SetterInjected {
-  // We lose the final marker
-  private Service service;
+    // We lose the final marker
+    private Service service;
 
-  public void setService(Service service) {
-    this.service = service;
-  }
+    public void setService(Service service) {
+        this.service = service;
+    }
 }
 
 class AnnotatedProperty {
-  @Autowired
-  private final Service service;
+    @Autowired
+    private final Service service;
 }
 ```
 
@@ -107,7 +109,7 @@ class AnnotatedProperty {
 
 This came originally from behaviour driven development - but it applies well to most tests. The test structure is simply:
 
-* Given - setup your initial state
+* Given - set up your initial state
 * When - the action to be tested
 * Then - the expected results
 
@@ -117,7 +119,7 @@ This came originally from behaviour driven development - but it applies well to 
 
 ### Naming Conventions
 
-* Both class and test method names are used in the test results so they need to be descriptive.
+* Both class and test method names are used in the test results, so they need to be descriptive.
 * Certain frameworks pick files based on filename [^3]. For example failsafe which we will see under integration tests. A common convention is <Name>Test for unit, <Name>IT for integration test (this is configurable).
 * Test method names should be consistent. [^3]
 * Kotlin test method names are perhaps one of the few places where we can use this form of method naming to advantage (gives a very readable test result output):
@@ -133,9 +135,17 @@ This came originally from behaviour driven development - but it applies well to 
 ## Unit test with JUnit 5
 
 * The test function is marked with `@Test`
-* We use the built in JUnit assertEquals
+* We use the built-in JUnit assertEquals
 
-Example: SimpleJunitTest
+Exercise 1: SimpleJunit Exercise
+
+* Write a test (marked `@Test`) that uses `assertEquals` to test that the method `calculate` returns `5`
+
+---
+
+## Unit test with JUnit 5
+
+Example Solution: SimpleJunitTest
 
 ---
 
@@ -150,21 +160,86 @@ Which to use us a matter of personal preference and/or project standards.
 
 ---
 
+### Exercise 2
+
+Investigate the different assertions available from junit, hamcrest and assertj.
+
+- Start with a simple assertion on equality
+- Investigate what other assertions are available
+
+---
+
+### Assertion Examples
+
+- SimpleJunitTest
+- SimpleJunitHamcrestTest
+- SimpleJunitAssertJTest
+
+---
+
 ## Parametric
 
 A parametric test allows us to reuse the same test with a range of different test data sets.
 
 The test method is annotated to tell JUnit that it is parameterized and also where to get the data from.
 
-There's a bunch of different sources available[^4] - we'll use MethodSource.
+---
 
-Example: SimpleParametricTest
+### Sources
+
+There's a bunch of different sources available[^4] - some of the most common are:
+
+- ValueSource - hardcoded string in the annotation 
+- NullSource/EmptySource/NullAndEmptySource
+- EnumSource - pass each value of an enum
+- MethodSource - call a method returning Arguments
+
+You can combine several sources - for example - null/empty and method - to test both with empty values and provided values
 
 [^4]: https://junit.org/junit5/docs/current/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/package-summary.html
 
 ---
 
+#### MethodSource
+
+- Returns a stream of `Arguments`
+- Each `Arguments` contain a complete set of data for a test run:
+  - input
+  - expected results
+
+```java
+@ParameterizedTest
+@MethodSource("methodName")
+void testMethod(T param1, T2 param2, T3 expectedResult)
+
+...
+
+static Stream<Arguments> testMethod() {
+    return Stream.of(
+            Arguments.of(A, B, ExpectedC),
+            ...
+    )
+}
+```
+
+---
+
+### Exercise 3
+
+Modify the existing single test to be parameterized and test several calculations
+
+---
+
+### Parametric example
+
+Example: SimpleParametricTest
+
+
+---
+
 ## Unit tests in a real application
+
+We want to test business logic in a service class. This service has a property which is a repository.
 
 Issue - we need to provide a full implementation of the repository to test a non-related method.
 
@@ -200,17 +275,16 @@ For example - we want to test a service - but to have test control over what the
 
 ## Simple Mocking example
 
-JUnit needs some help to allow for mocking so we add an extension to the test class and set up our mock dependency:
+JUnit needs some help to allow for mocking, so we add an extension to the test class and set up our mock dependency:
 
 ```java
+
 @ExtendWith(MockitoExtension.class)
 class DummyJavaServiceMockTest {
-  @Mock
-  DummyRepository dummyRepository;
+    @Mock
+    DummyRepository dummyRepository;
 }
 ```
-
-Example: DummyJavaServiceMockTest
 
 ---
 
@@ -221,14 +295,29 @@ We can now use that repository in our tests and tell it what to do under certain
 void testServiceBackendCheck() {
     // When the repository isUp() is called then we will return value true
     when(dummyRepository.isUp()).thenReturn(true);
-
+    
     // Instantiate test service with mock repo
     DummyJavaService service = new DummyJavaService(dummyRepository);
-
+    
     // Test
     Assertions.assertThat(service.backendCheck()).isTrue();
 }
 ```
+
+---
+
+### Exercise 4
+
+Complete the tests in JavaServiceMockTest using a mocked repository
+
+---
+
+### Mocking example
+
+Examples:
+
+* DummyJavaServiceMockTest (mockito)
+* DataKotlinServiceMockkFunSpecTest (mockk)
 
 ---
 
@@ -237,8 +326,6 @@ void testServiceBackendCheck() {
 We want to know something about an internal call that our test candidate makes.
 
 For that we'll use argument capture.
-
-Example: DataJavaServiceMockTest
 
 As well as using a mocked repository we add a Captor:
 
@@ -253,7 +340,7 @@ We can use this when configuring the mock to capture an argument value:
 
 ```java
 when(repository.findById(captor.capture()))
-  .thenReturn(Optional.of(new DataJava(1L, "qwerty")));
+    .thenReturn(Optional.of(new DataJava(1L, "qwerty")));
 ```
 
 And we can test that this was in fact called with the correct value:
@@ -261,6 +348,20 @@ And we can test that this was in fact called with the correct value:
 ```java
 Assertions.assertThat(captor.getValue()).isEqualTo(1L);
 ```
+
+---
+
+### Exercise 5
+
+Complete the tests in JavaServiceMockTest to check the passed argument to findByID using ArgumentCaptor
+
+---
+
+### Captor example
+
+Example: DataJavaServiceMockTest
+
+Captor is used in `testSingle()`
 
 ---
 
@@ -276,15 +377,38 @@ verify(repository, times(1)).findById(any());
 
 Here we use `any()` as matcher - we could also choose to verify with a concrete parameter value.
 
+In kotlin with mockk you can also check that _all_ mocks have been verified:
+
+```kotlin
+verify(exactly = 1) { repository.findById(any()) }
+
+confirmVerified() // with no params - verify all mocks
+```
+
+
 ---
 
 ## Integration tests
 
 These are tests that spin up the application and test it under a running condition.
 
-We use the failsafe plugin for maven for these.
+Different build systems use different ways to signal test types.
 
-One of the default filename matchers for failsafe is **IT.java - we will use that.
+For this course we will simply run all tests to keep it simple.
+
+---
+
+### Maven
+
+For example - in maven we usually use surefire plugin for normal tests but failsafe for integration tests - and these use filenames to distinguish. 
+
+For example - one of the default filename matchers for failsafe is **IT.java. You can also specify different directories etc.
+
+---
+
+### Gradle
+
+Gradle uses sourceSets to handle this with the ability to set includes and excludes.
 
 ---
 
@@ -403,7 +527,6 @@ Two examples - one mock tests the DummyJavaService and the other the DataKotlinS
 
 ## Maven testing
 
-All of the above tests can be run within a modern java IDE. However - we use a build system for our projects - most often maven (gradle can also be used in a similar fashion). This will also be how the tests are run when using a CI system.
 
 There are three main sets of configuration in the pom.xml file.
 
@@ -419,10 +542,18 @@ Jacoco sets itself up under pre-integration-test and builds the result in post-i
 
 ---
 
+## Gradle testing
+
+Gradle allows you to configure different sourceSets for different types of tests.
+
+Currently - the new test suites functionality is marked as Incubating - so is not entirely fixed.
+
+---
+
 ## CI testing
 
-There are multiple JVM supporting continuous integration systems available - bamboo, jenkins etc - but since this repo is on github - it's set up with a github action.
+There are multiple JVM supporting continuous integration systems available - bamboo, jenkins etc. - but since this repo is on GitHub - it's set up with a GitHub action.
 
-Example: .github/workflows/build.yml
+Example: `.github/workflows/CI.yml`
 
-In a devops environment we prefer CIs that support configuration as code (github action workflows, Jenkinsfile etc) where the build config is under change control - rather than set up in the CI interface manually.
+In a devops environment we prefer CIs that support configuration as code (GitHub action workflows, Jenkinsfile etc.) where the build config is under change control - rather than set up in the CI interface manually.

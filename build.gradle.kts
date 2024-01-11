@@ -13,7 +13,7 @@ group = "com.itera"
 version = "0.0.1"
 
 kotlin {
-    jvmToolchain(20)
+    jvmToolchain(21)
 }
 
 repositories {
@@ -36,7 +36,7 @@ dependencies {
 
 tasks {
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
+        compilerOptions {
             freeCompilerArgs = listOf("-Xcontext-receivers")
         }
     }
@@ -51,8 +51,15 @@ tasks.test {
 }
 
 tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+
     reports {
         xml.required.set(true)
     }
-    dependsOn(tasks.test)
 }
+
+
+tasks.named("check") {
+    dependsOn(tasks.jacocoTestReport)
+}
+
