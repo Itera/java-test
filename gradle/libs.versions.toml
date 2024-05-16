@@ -22,6 +22,7 @@ flyway = { group = "org.flywaydb", name = "flyway-core", version.ref = "flyway_v
 flyway_postgres = { group = "org.flywaydb", name = "flyway-database-postgresql", version.ref = "flyway_version" }
 
 kotlinx = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core-jvm", version.ref = "kotlinx_version"}
+kotlin_reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin_version" }
 
 kotest_assertions_core = { group = "io.kotest", name = "kotest-assertions-core-jvm", version.ref = "kotest_version" }
 kotest_runner = { group = "io.kotest", name = "kotest-runner-junit5-jvm", version.ref = "kotest_version" }

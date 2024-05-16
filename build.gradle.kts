@@ -28,6 +28,7 @@ dependencies {
     implementation(libs.flyway)
     implementation(libs.flyway.postgres)
     implementation(libs.kotlinx)
+    implementation(libs.kotlin.reflect)
 
     testImplementation(libs.spring.boot.starter.test)
     testImplementation(libs.kotest.assertions.core)
