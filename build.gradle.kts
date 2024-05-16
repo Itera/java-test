@@ -26,6 +26,7 @@ dependencies {
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.h2)
     implementation(libs.flyway)
+    implementation(libs.flyway.postgres)
     implementation(libs.kotlinx)
 
     testImplementation(libs.spring.boot.starter.test)

@@ -1,14 +1,15 @@
 [versions]
-detekt_version = "1.23.4"
-kotest_version = "5.8.0"
-kotlin_version = "1.9.21"
-kotlin_allopen_version = "1.9.21"
-kotlin_jpa_version = "1.9.21"
-kotlinter_version = "3.14.0"
-kotlinx_version = "1.7.3"
-mockk_version = "1.13.8"
-spring_boot_version = "3.2.0"
-spring_refs_version = "1.1.4"
+detekt_version = "1.23.6"
+kotest_version = "5.9.0"
+kotlin_version = "1.9.23"
+kotlin_allopen_version = "1.9.23"
+kotlin_jpa_version = "1.9.23"
+kotlinter_version = "4.3.0"
+kotlinx_version = "1.8.1"
+mockk_version = "1.13.10"
+spring_boot_version = "3.2.5"
+spring_refs_version = "1.1.5"
+flyway_version = "10.13.0"
 
 [libraries]
 spring_boot_starter = { group = "org.springframework.boot", name = "spring-boot-starter" }
@@ -17,7 +18,8 @@ spring_boot_starter_test = { group = "org.springframework.boot", name = "spring-
 spring_boot_starter_web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
 
 h2 = { group = "com.h2database", name = "h2" }
-flyway = { group = "org.flywaydb", name = "flyway-core" }
+flyway = { group = "org.flywaydb", name = "flyway-core", version.ref = "flyway_version" }
+flyway_postgres = { group = "org.flywaydb", name = "flyway-database-postgresql", version.ref = "flyway_version" }
 
 kotlinx = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core-jvm", version.ref = "kotlinx_version"}
 
