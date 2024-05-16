@@ -12,5 +12,7 @@ class DataKotlinController(val service: DataKotlinService) {
     fun getAll() = service.getAll()
 
     @RequestMapping("/{id}/")
-    fun getById(@PathVariable id: String) = service.getData(id.toLong())
+    fun getById(
+        @PathVariable id: String,
+    ) = service.getData(id.toLong())
 }

@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/kotlin")
 class DummyKotlinController(val service: DummyKotlinService) {
-
     @RequestMapping("/")
-    fun healthCheck() = if (service.backendCheck()) {
-        "OK"
-    } else {
-        "Not OK"
-    }
+    fun healthCheck() =
+        if (service.backendCheck()) {
+            "OK"
+        } else {
+            "Not OK"
+        }
 }
