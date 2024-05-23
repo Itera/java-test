@@ -12,6 +12,8 @@ class SimpleParametricExerciseTest {
 
     // Exercise - convert the following test to parametric using method source
 
+    // Test multiple calculations
+
     @Test
     void simpleJUnitUnitTest() {
         // Business logic

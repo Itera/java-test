@@ -145,7 +145,7 @@ Exercise 1: SimpleJunit Exercise
 
 ## Unit test with JUnit 5
 
-Example Solution: SimpleJunitTest
+Example Solution: `SimpleJunitTest`
 
 ---
 
@@ -171,9 +171,9 @@ Investigate the different assertions available from junit, hamcrest and assertj.
 
 ### Assertion Examples
 
-- SimpleJunitTest
-- SimpleJunitHamcrestTest
-- SimpleJunitAssertJTest
+- `SimpleJunitTest`
+- `SimpleJunitHamcrestTest`
+- `SimpleJunitAssertJTest`
 
 ---
 
@@ -189,10 +189,10 @@ The test method is annotated to tell JUnit that it is parameterized and also whe
 
 There's a bunch of different sources available[^4] - some of the most common are:
 
-- ValueSource - hardcoded string in the annotation 
-- NullSource/EmptySource/NullAndEmptySource
-- EnumSource - pass each value of an enum
-- MethodSource - call a method returning Arguments
+- `ValueSource` - hardcoded string in the annotation 
+- `NullSource`/`EmptySource`/`NullAndEmptySource`
+- `EnumSource` - pass each value of an enum
+- `MethodSource` - call a method returning Arguments
 
 You can combine several sources - for example - null/empty and method - to test both with empty values and provided values
 
@@ -232,16 +232,22 @@ Modify the existing single test to be parameterized and test several calculation
 
 ### Parametric example
 
-Example: SimpleParametricTest
+Example: `SimpleParametricTest`
 
 
 ---
 
 ## Unit tests in a real application
 
-We want to test business logic in a service class. This service has a property which is a repository.
+Consider a service in a database backed application. The service has a property supplied via the constructor that is a repository.
+
+We want to test the business logic in that service class - for example a calculation.
 
 Issue - we need to provide a full implementation of the repository to test a non-related method.
+
+Example - we want to test the `complexCalculation` method in `DummyJavaService`
+
+---
 
 Things to consider:
 
@@ -249,7 +255,7 @@ Things to consider:
 * Mocking (we'll see this later)?
 * In this instance - the calculation method could be static
 
-Example: DummyJavaServiceTest
+Example: `DummyJavaServiceTest`
 
 ---
 
@@ -257,7 +263,7 @@ Example: DummyJavaServiceTest
 
 The issues here are the same as for the simple test.
 
-Example: DummyJavaServiceParametricTest
+Example: `DummyJavaServiceParametricTest`
 
 ---
 
@@ -308,7 +314,7 @@ void testServiceBackendCheck() {
 
 ### Exercise 4
 
-Complete the tests in JavaServiceMockTest using a mocked repository
+Complete the tests in `JavaServiceMockTest` using a mocked repository
 
 ---
 
@@ -316,8 +322,8 @@ Complete the tests in JavaServiceMockTest using a mocked repository
 
 Examples:
 
-* DummyJavaServiceMockTest (mockito)
-* DataKotlinServiceMockkFunSpecTest (mockk)
+* `DummyJavaServiceMockTest` (mockito)
+* `DataKotlinServiceMockkFunSpecTest` (mockk and kotest funspec)
 
 ---
 
@@ -359,7 +365,7 @@ Complete the tests in JavaServiceMockTest to check the passed argument to findBy
 
 ### Captor example
 
-Example: DataJavaServiceMockTest
+Example: `DataJavaServiceMockTest`
 
 Captor is used in `testSingle()`
 
@@ -377,7 +383,7 @@ verify(repository, times(1)).findById(any());
 
 Here we use `any()` as matcher - we could also choose to verify with a concrete parameter value.
 
-In kotlin with mockk you can also check that _all_ mocks have been verified:
+In kotlin with mockk you can also check that _all_ mocks have been verified (in other words you have not called a mocked endpoint without verifying it):
 
 ```kotlin
 verify(exactly = 1) { repository.findById(any()) }
@@ -428,7 +434,7 @@ We will actually use this for the DB tests later on - but as we are using spring
 @SpringBootTest
 ```
 
-Example: DummyJavaServiceIT
+Example: `DummyJavaServiceIT`
 
 ---
 
@@ -445,7 +451,7 @@ Annotate the test class:
 
 and you get a MockMvc object you can use to call your application.
 
-Example: DummyJavaControllerIT
+Example: `DummyJavaControllerIT`
 
 ---
 
@@ -459,7 +465,9 @@ The migrations are under src/main/resources rather than src/test/resources so th
 
 ## DB Console
 
-Start the TestApplication then head to http://localhost:8080/h2
+Start the TestApplication then head to
+
+http://localhost:8080/h2
 
 JDBC URL: jdbc:h2:mem:testdb
 Username: sa
@@ -483,7 +491,17 @@ Inject the repository you want to test:
 private DataJavaRepository repository;
 ```
 
-Example: DataJavaRepositoryIT
+---
+
+### Exercise 6
+
+- Data JPA Exercise
+
+---
+
+### Example JPA test
+
+Example: `DataJavaRepositoryIT` - this uses junit assertions
 
 ---
 
@@ -491,8 +509,8 @@ Example: DataJavaRepositoryIT
 
 Kotlin can be used to create all the tests we have seen so far - e.g. compare:
 
-* DataJavaRepositoryIT
-* DataKotlinRepositoryIT
+* `DataJavaRepositoryIT`
+* `DataKotlinRepositoryIT`
 
 The same annotations and injection of repository is used. The only difference here is that we used kotest matchers rather than JUnit assertions.
 
@@ -506,7 +524,7 @@ For the list (10 as of when this was written) see styles.md[^6]
 
 We'll take a look at FunSpec.
 
-Example: DummyJavaServiceFunSpecTest
+Example: `DummyJavaServiceFunSpecTest`
 
 This is not quite the simplest structure - it uses init rather than the FunSpec constructor - but that allows for the beforeTest setup call.
 
@@ -520,8 +538,8 @@ Kotlin can also use Mockito and similar java mock libraries - but there is a nic
 
 Two examples - one mock tests the DummyJavaService and the other the DataKotlinService:
 
-* DummyJavaServiceMockkFunSpecTest
-* DataKotlinServiceMockkFunSpecTest
+* `DummyJavaServiceMockkFunSpecTest`
+* `DataKotlinServiceMockkFunSpecTest`
 
 ---
 

@@ -2,12 +2,12 @@ package com.itera.test.exercises.exercise2;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class SimpleJunitAssertionExerciseTest {
     int calculate() {
         return 3 + 2;
     }
-
-    // Exercise - complete the test using assertj assertion on equality
 
     @Test
     void simpleAssertJUnitTest() {
@@ -15,7 +15,6 @@ public class SimpleJunitAssertionExerciseTest {
         int result = calculate();
 
         // Test
+        assertEquals(result, 5);
     }
-
-    // Exercise - explore other assertions provided by assertj
 }

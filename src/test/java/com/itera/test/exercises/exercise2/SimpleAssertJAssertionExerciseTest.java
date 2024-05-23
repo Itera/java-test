@@ -7,6 +7,8 @@ public class SimpleAssertJAssertionExerciseTest {
         return 3 + 2;
     }
 
+    // Exercise - complete the test using assertj assertion on equality
+
     @Test
     void simpleJUnitUnitTest() {
         // Business logic
@@ -14,4 +16,6 @@ public class SimpleAssertJAssertionExerciseTest {
 
         // Test
     }
+
+    // Exercise - explore other assertions provided by assertj
 }
