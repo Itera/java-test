@@ -388,7 +388,7 @@ In kotlin with mockk you can also check that _all_ mocks have been verified (in 
 ```kotlin
 verify(exactly = 1) { repository.findById(any()) }
 
-confirmVerified() // with no params - verify all mocks
+confirmVerified() // with no params - verify all mocks have been verified
 ```
 
 
